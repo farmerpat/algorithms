@@ -2,10 +2,11 @@
 require __DIR__ . '/vendor/autoload.php';
 
 use app\libraries\testObject\TestObject;
-use app\libraries\insertionSort\InsertionSort;
+//use app\libraries\insertionSort\InsertionSort;
+use app\libraries\selectionSort\SelectionSort;
 
 $test = new TestObject();
-$ar = new SplFixedArray(5);
+$ar = new SplFixedArray(50);
 
 for ($i=0; $i<$ar->count(); $i++) {
   $ar[$i] = rand(0, 2001);
@@ -13,8 +14,9 @@ for ($i=0; $i<$ar->count(); $i++) {
 
 var_dump($ar);
 
-$ss = new InsertionSort($ar);
+$ss = new SelectionSort($ar);
 echo '<br>';
+var_dump($ss);
 $ss = $ss->sort();
 echo '<br>';
 echo '<br>';

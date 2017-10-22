@@ -1,7 +1,7 @@
 <?php
-namespace app\libraries\insertionSort;
+namespace app\libraries\selectionSort;
 
-class InsertionSort {
+class SelectionSort {
   private $myArray;
 
   public function __construct ($ar) {
@@ -19,23 +19,34 @@ class InsertionSort {
 
   public function sort () {
     if ($this->myArray->count() > 1) {
+      for ($i = 0; $i < $this->myArray->count(); $i++) {
+        $minIndex = $this->locateMinIndex($i);
+        $temp = $this->myArray[$i];
+        $this->myArray[$i] = $this->myArray[$minIndex];
+        $this->myArray[$minIndex] = $temp;
 
-      for ($i = 1; $i < $this->myArray->count(); $i++) {
-        $moveableElt = $this->myArray[$i];
-
-        $j = $i-1;
-
-        while (($j > -1) && ($this->myArray[$j] > $moveableElt)) {
-          $this->myArray[$j+1] = $this->myArray[$j];
-          $j -= 1;
-
-        }
-
-        $this->myArray[$j+1] = $moveableElt;
       }
     }
 
     return $this->myArray;
+  }
+
+  // find the index of the min element
+  // running from $startingIndex to the end
+  // of myArray
+  private function locateMinIndex ($startingIndex) {
+    $minIndex = $startingIndex;
+    $minValue = $this->myArray[$startingIndex];
+
+    for ($i=$startingIndex+1; $i<$this->myArray->count(); $i++) {
+      if ($this->myArray[$i] < $minValue) {
+        $minValue = $this->myArray[$i];
+        $minIndex = $i;
+
+      }
+    }
+
+    return $minIndex;
   }
 }
 ?>
