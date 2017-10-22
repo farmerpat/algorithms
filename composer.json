@@ -1,0 +1,12 @@
+{
+  "autoload": {
+    "classmap": [
+      "app/libraries"
+
+    ]
+  },
+  "require": {
+    "phpunit/phpunit": "6.4.*"
+
+  }
+}
