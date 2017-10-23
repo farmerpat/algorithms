@@ -6,11 +6,14 @@ use app\libraries\mergeSort\MergeSort;
 use app\libraries\selectionSort\SelectionSort;
 use app\libraries\insertionSort\InsertionSort;
 use app\libraries\linearSearch\LinearSearch;
+use app\libraries\binarySearch\BinarySearch;
 
 set_time_limit(120);
 
-$arraySize = 10000;
+$arraySize = 2000000;
 $test = new TestObject();
+
+/*
 $ar = new SplFixedArray($arraySize);
 
 for ($i=0; $i<$ar->count(); $i++) {
@@ -57,6 +60,8 @@ echo ($insertionSortTimeEnd - $insertionSortTimeStart) . ' seconds';
 echo '<br>';
 echo '<br>';
 
+ */
+
 $ar = new SplFixedArray($arraySize);
 
 for ($i=0; $i<$ar->count(); $i++) {
@@ -72,6 +77,25 @@ $linearSearchTimeEnd = microtime(true);
 echo 'linear search time for ' . $arraySize . ' random non-negative integers ';
 echo 'for a random non-negative integer, ' . $searchTarget . ': ';
 echo ($linearSearchTimeEnd - $linearSearchTimeStart) . ' seconds';
+echo '<br>';
+echo '<br>';
+
+$ar = new SplFixedArray($arraySize);
+
+for ($i=0; $i<$ar->count(); $i++) {
+  $ar[$i] = rand(0, 1000000);
+}
+
+// start timing after constructor to avoid counting the initial sort
+$bs = new BinarySearch($ar);
+$binarySearchTimeStart = microtime(true);
+$searchTarget = rand(0, 1000000);
+$searchResultIndex = $ls->search($searchTarget);
+$binarySearchTimeEnd = microtime(true);
+
+echo 'binary search time for ' . $arraySize . ' random non-negative integers ';
+echo 'for a random non-negative integer, ' . $searchTarget . ': ';
+echo ($binarySearchTimeEnd - $binarySearchTimeStart) . ' seconds';
 echo '<br>';
 echo '<br>';
 
