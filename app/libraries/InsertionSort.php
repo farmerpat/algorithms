@@ -10,7 +10,6 @@ class InsertionSort {
     }
 
     $this->myArray = $ar;
-
   }
 
   public function getArray () {

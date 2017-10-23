@@ -10,7 +10,6 @@ class SelectionSort {
     }
 
     $this->myArray = $ar;
-
   }
 
   public function getArray () {
