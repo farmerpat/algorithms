@@ -5,10 +5,11 @@ use app\libraries\testObject\TestObject;
 use app\libraries\mergeSort\MergeSort;
 use app\libraries\selectionSort\SelectionSort;
 use app\libraries\insertionSort\InsertionSort;
+use app\libraries\linearSearch\LinearSearch;
 
 set_time_limit(120);
 
-$arraySize = 30000;
+$arraySize = 10000;
 $test = new TestObject();
 $ar = new SplFixedArray($arraySize);
 
@@ -53,6 +54,24 @@ $is->sort();
 $insertionSortTimeEnd = microtime(true);
 echo 'insertion sort time for ' . $arraySize . ' random non-negative integers: ';
 echo ($insertionSortTimeEnd - $insertionSortTimeStart) . ' seconds';
+echo '<br>';
+echo '<br>';
+
+$ar = new SplFixedArray($arraySize);
+
+for ($i=0; $i<$ar->count(); $i++) {
+  $ar[$i] = rand(0, 1000000);
+}
+
+$linearSearchTimeStart = microtime(true);
+$ls = new LinearSearch($ar);
+$searchTarget = rand(0, 1000000);
+$searchResultIndex = $ls->search($searchTarget);
+$linearSearchTimeEnd = microtime(true);
+
+echo 'linear search time for ' . $arraySize . ' random non-negative integers ';
+echo 'for a random non-negative integer, ' . $searchTarget . ': ';
+echo ($linearSearchTimeEnd - $linearSearchTimeStart) . ' seconds';
 echo '<br>';
 echo '<br>';
 
