@@ -8,10 +8,11 @@ use app\libraries\insertionSort\InsertionSort;
 use app\libraries\linearSearch\LinearSearch;
 use app\libraries\binarySearch\BinarySearch;
 use app\libraries\bubbleSort\BubbleSort;
+use app\libraries\heapSort\HeapSort;
 
 set_time_limit(120);
 
-$arraySize = 20000;
+$arraySize = 10000;
 $test = new TestObject();
 
 $ar = new SplFixedArray($arraySize);
@@ -36,17 +37,15 @@ for ($i=0; $i<$ar->count(); $i++) {
   $ar[$i] = rand(0, 1000000);
 }
 
-$bubbleSortTimeStart = microtime(true);
-$bs = new BubbleSort($ar);
+$heapSortTimeStart = microtime(true);
+$hs = new HeapSort($ar);
 echo '<br>';
-$bs->sort();
-$bubbleSortTimeEnd = microtime(true);
-echo 'bubble sort time for ' . $arraySize . ' random non-negative integers: ';
-echo ($bubbleSortTimeEnd - $bubbleSortTimeStart) . ' seconds';
+$hs->sort();
+$heapSortTimeEnd = microtime(true);
+echo 'heap sort time for ' . $arraySize . ' random non-negative integers: ';
+echo ($heapSortTimeEnd - $heapSortTimeStart) . ' seconds';
 echo '<br>';
 echo '<br>';
-
-
 
 echo '<br>' . $test->getTestData() . '<br>';
 
