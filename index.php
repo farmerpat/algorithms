@@ -9,41 +9,25 @@ use app\libraries\linearSearch\LinearSearch;
 use app\libraries\binarySearch\BinarySearch;
 use app\libraries\bubbleSort\BubbleSort;
 use app\libraries\heapSort\HeapSort;
+use app\libraries\stack\Stack;
 
 set_time_limit(120);
 
-$arraySize = 10000;
-$test = new TestObject();
+$stackSize = 30;
+$s = new Stack($stackSize);
 
-$ar = new SplFixedArray($arraySize);
-
-for ($i=0; $i<$ar->count(); $i++) {
-  $ar[$i] = rand(0, 1000000);
+for ($i=0; $i<$stackSize; $i++) {
+    $s->push(rand(0, 20000));
 }
 
-$mergeSortTimeStart = microtime(true);
-$ms = new MergeSort($ar);
-echo '<br>';
-$ms->sort();
-$mergeSortTimeEnd = microtime(true);
-echo 'merge sort time for ' . $arraySize . ' random non-negative integers: ';
-echo ($mergeSortTimeEnd - $mergeSortTimeStart) . ' seconds';
-echo '<br>';
-echo '<br>';
+var_dump($s);
+var_dump($s->peek());
+var_dump($s->pop());
+var_dump($s->peek());
+$s->push(10);
+$s->push(30);
+var_dump($s);
 
-$ar = new SplFixedArray($arraySize);
-
-for ($i=0; $i<$ar->count(); $i++) {
-  $ar[$i] = rand(0, 1000000);
-}
-
-$heapSortTimeStart = microtime(true);
-$hs = new HeapSort($ar);
-echo '<br>';
-$hs->sort();
-$heapSortTimeEnd = microtime(true);
-echo 'heap sort time for ' . $arraySize . ' random non-negative integers: ';
-echo ($heapSortTimeEnd - $heapSortTimeStart) . ' seconds';
 echo '<br>';
 echo '<br>';
 
